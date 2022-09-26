@@ -177,6 +177,7 @@
     <Compile Include="Data\Book.cs">
       <DependentUpon>BookModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\BookDomain.cs" />
     <Compile Include="Data\BookModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -207,7 +208,9 @@
     <None Include="Data\BookModel.edmx.diagram">
       <DependentUpon>BookModel.edmx</DependentUpon>
     </None>
-    <None Include="Data\DefualtUser.json" />
+    <None Include="Data\DefualtUser.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
