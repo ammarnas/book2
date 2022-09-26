@@ -25,6 +25,8 @@ namespace Book2.Data
             }
         }
 
+        
+
         // Login
         public static void Login()
         {
@@ -67,12 +69,73 @@ namespace Book2.Data
         // User Control
         public static void UserControl()
         {
-
-            Console.WriteLine("- Enter 1 To Show Info Of Books");
-            Console.WriteLine("- Enter 2 To Show All Info Of Books");
+            Console.WriteLine("- Enter 1 To Show Short Info Of Books");
+            Console.WriteLine("- Enter 2 To Show All Info Of Book");
             Console.WriteLine("- Enter 3 To Delete Book");
-            Console.WriteLine("- Enter 4 To Edit Book");
+            Console.WriteLine("- Enter 4 To Edit Book\n");
         }
-        // 
+        // Short Info
+        public static void ShortInfo()
+        {
+            using (Book_ManagementEntities Context =new Book_ManagementEntities())
+            {
+                var Shortinfo = Context.Books
+                                .Select(b => new { b.Id, b.Title }).ToList();
+                foreach (var item in Shortinfo)
+                {
+                    Console.WriteLine("- "+item.Id +"    "+item.Title);
+                }
+            }
+
+        }
+        public static void BookInfo()
+        {
+            Console.Write("- Enter Id Of Book \n > ");
+            int id = Convert.ToInt32(Console.ReadLine());
+            using (Book_ManagementEntities Context =new Book_ManagementEntities ())
+            {
+                var book = Context.Books.Where(b => b.Id == id).FirstOrDefault();
+
+                Console.WriteLine($" id: {book.Id} Title: {book.Title} Price: {book.Price} Quantity: {book.Quantity}");
+            }
+        }
+        public static void DeleteBook()
+        {
+            Console.Write("- Enter Id Of Book \n > ");
+            int id = Convert.ToInt32(Console.ReadLine());
+            using (Book_ManagementEntities Context = new Book_ManagementEntities())
+            {
+                var book = Context.Books.Where(b => b.Id == id).FirstOrDefault();
+                Console.WriteLine($"If You Sure You Want To Delete {book.Title} Book Press y or press n");
+                string IsDelete=Console.ReadLine();
+                if (IsDelete=="y")
+                {
+                    Context.Books.Remove(book);
+                    Context.SaveChanges();
+                }
+                else
+                    Console.WriteLine("Delete Has Been Cancelled");
+            }
+        }
+        public static void UpdateBook()
+        {
+            Console.Write("- Enter Id Of Book \n > ");
+            int id = Convert.ToInt32(Console.ReadLine());
+            Console.Write("- Enter New Titel Of Book \n > ");
+            String Titel = Console.ReadLine();
+            Console.Write("- Enter New Price Of Book \n > ");
+            int Price = Convert.ToInt32(Console.ReadLine());
+            Console.Write("- Enter New Quantity Of Book \n > ");
+            int Quantity = Convert.ToInt32(Console.ReadLine());
+            using (Book_ManagementEntities Context = new Book_ManagementEntities())
+            {
+                var book = Context.Books.Where(b => b.Id == id).FirstOrDefault();
+
+                book.Title = Titel;
+                book.Price = Price;
+                book.Quantity = Quantity;
+                Context.SaveChanges();
+            }
+        }
     }
 }
