@@ -15,27 +15,34 @@ namespace Book2
             BookDomain.AddDefualtUser();
 
             BookDomain.Login();
-
+            BookDomain.BookCount();
             BookDomain.UserControl();
 
+            wordcontrol:
+            Console.Write(" > ");
             int WordControl = Convert.ToInt32(Console.ReadLine());
 
             switch (WordControl)
             {
                 case 1:
-                    Console.WriteLine("");
+                    BookDomain.ShortInfo();
+                    goto wordcontrol;
                     break;
                 case 2:
-                    Console.WriteLine("");
+                    BookDomain.BookInfo();
+                    goto wordcontrol;
                     break;
                 case 3:
-                    Console.WriteLine("");
+                    BookDomain.DeleteBook();
+                    goto wordcontrol;
                     break;
                 case 4:
-                    Console.WriteLine("");
+                    BookDomain.UpdateBook();
+                    goto wordcontrol;
                     break;
                 
             }
+            Console.ReadLine();
         }
     }
 }
