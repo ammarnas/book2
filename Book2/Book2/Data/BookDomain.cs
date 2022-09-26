@@ -116,6 +116,7 @@ namespace Book2.Data
                     Context.Books.Remove(book);
                     Context.SaveChanges();
                 }
+
                 else
                     Console.WriteLine("Delete Has Been Cancelled");
             }
