@@ -19,7 +19,6 @@ namespace Book2
             BookDomain.UserControl();
 
             wordcontrol:
-            Console.Write(" > ");
             int WordControl = Convert.ToInt32(Console.ReadLine());
 
             switch (WordControl)

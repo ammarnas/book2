@@ -48,7 +48,7 @@ namespace Book2.Data
                         Console.WriteLine("Try Again");
                         goto login;
                     }
-                    Console.WriteLine("Login Successfully");
+                    Console.WriteLine("Login Successfully...");
                 }
             }
             catch (Exception e)
@@ -73,6 +73,8 @@ namespace Book2.Data
             Console.WriteLine("- Enter 2 To Show All Info Of Book");
             Console.WriteLine("- Enter 3 To Delete Book");
             Console.WriteLine("- Enter 4 To Edit Book\n");
+            Console.Write("- Enter Number To Excute It \n > ");
+
         }
         // Short Info
         public static void ShortInfo()
@@ -86,11 +88,11 @@ namespace Book2.Data
                     Console.WriteLine("- "+item.Id +"    "+item.Title);
                 }
             }
-
+            Console.Write("- Enter Number To Excute It \n > ");
         }
         public static void BookInfo()
         {
-            Console.Write("- Enter Id Of Book \n > ");
+            Console.Write("- Enter Id Of Book To get Information \n > ");
             int id = Convert.ToInt32(Console.ReadLine());
             using (Book_ManagementEntities Context =new Book_ManagementEntities ())
             {
@@ -98,10 +100,11 @@ namespace Book2.Data
 
                 Console.WriteLine($" id: {book.Id} Title: {book.Title} Price: {book.Price} Quantity: {book.Quantity}");
             }
+            Console.Write("- Enter Number To Excute It \n > ");
         }
         public static void DeleteBook()
         {
-            Console.Write("- Enter Id Of Book \n > ");
+            Console.Write("- Enter Id Of Book You Want To Delete It \n > ");
             int id = Convert.ToInt32(Console.ReadLine());
             using (Book_ManagementEntities Context = new Book_ManagementEntities())
             {
@@ -113,9 +116,11 @@ namespace Book2.Data
                     Context.Books.Remove(book);
                     Context.SaveChanges();
                 }
+
                 else
                     Console.WriteLine("Delete Has Been Cancelled");
             }
+            Console.Write("- Enter Number To Excute It \n > ");
         }
         public static void UpdateBook()
         {
@@ -136,6 +141,7 @@ namespace Book2.Data
                 book.Quantity = Quantity;
                 Context.SaveChanges();
             }
+            Console.Write("- Enter Number To Excute It \n > ");
         }
     }
 }
